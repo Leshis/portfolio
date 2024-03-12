@@ -51,13 +51,17 @@ header p {
 }
 
 .header-right-side {
-    height: 55vh;
-    margin: 0 auto;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.275rem;
 }
 
 .header-thumbnail {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     border-radius: 50%;
 }
 
@@ -80,8 +84,6 @@ section p {
     background-color: var(--light-blue);
 }
 
-
-
 /* Footer Styles */
 footer {
     background-color: var(--extra-dark-blue);
@@ -101,4 +103,34 @@ footer p {
     font-style: italic;
 }
 
-@media only screen and (min-width: 768px) {}
+/* Images */
+.image-location-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.location-pin {
+    width: 0.675rem;
+    margin-right: 0.375em;
+}
+
+@media only screen and (min-width: 768px) {
+    .header-container {
+        flex-direction: row;
+    }
+
+    .header-left-side {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .header-right-side {
+        height: 15rem;
+    }
+
+    .header-thumbnail {
+        width: auto;
+        height: 65%;
+    }
+}
