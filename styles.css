@@ -51,7 +51,6 @@ header p {
 }
 
 .header-right-side {
-    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,8 +59,7 @@ header p {
 }
 
 .header-thumbnail {
-    width: 90%;
-    height: 90%;
+    max-width: 320px;
     border-radius: 50%;
 }
 
