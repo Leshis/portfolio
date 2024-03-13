@@ -33,8 +33,9 @@ body {
 /* Navigation */
 #nav-toggle {
     display: block;
-    background: none;
+    background: rgba(128, 128, 128, 0.5);
     border: none;
+    border-radius: 5%;;
     color: var(--soft-white);
     font-size: 1.5rem;
     cursor: pointer;
@@ -52,7 +53,6 @@ body {
 
 #nav-list {
     list-style: none;
-    display: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -60,9 +60,12 @@ body {
     max-width: 300px;
     height: 100vh;
     background-color: var(--extra-dark-blue);
-    transition: transform 0.3s ease;
-    transform: translateX(0%);
     padding: 15% 15px 0;
+    transition: transform 0.4s ease;
+}
+
+.nav-list-hidden {
+    transform: translateX(100%);
 }
 
 #nav-list a {
@@ -165,12 +168,11 @@ footer p {
     #nav-list {
         display: flex;
         flex-direction: column;
+        background-color: inherit;
         position: relative;
         height: auto;
-        background-color: var(--light-blue);
         max-width: none;
-        width: 100vw;
-        padding: 15px 15px 0;
+        padding: 0;
     }
 
     #nav-list li {

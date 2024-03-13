@@ -4,18 +4,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const navToggle = document.getElementById("nav-toggle");
 
     navToggle.addEventListener("click", function () {
-        navList.style.display = (navList.style.display === "block") ? "none" : "block";
+        if (navList.classList.contains("nav-list-hidden")) {
+            navList.classList.remove("nav-list-hidden");
+        } else {
+            navList.classList.add("nav-list-hidden");
+        }
     });
 
     document.addEventListener("click", function (event) {
         const isClickInside = navToggle.contains(event.target) || navList.contains(event.target);
-
         if (!isClickInside) {
-            navList.style.display = "none";
+            if (!navList.classList.contains("nav-list-hidden")) {
+                navList.classList.add("nav-list-hidden");
+            }
         }
     });
 
-    sections.forEach((section, index) => {
+    function checkScreenWidth() {
+        if (window.innerWidth > 768) {
+            navList.classList.remove("nav-list-hidden");
+        }
+    }
+
+    checkScreenWidth();
+
+    window.addEventListener("resize", checkScreenWidth);
+
+    sections.forEach((section) => {
         const sectionId = section.getAttribute("id");
         const sectionTitle = section.querySelector("h2").textContent;
 
@@ -25,26 +40,15 @@ document.addEventListener("DOMContentLoaded", function () {
         link.textContent = sectionTitle;
         link.href = `#${sectionId}`;
 
+        link.addEventListener("click", function () {
+            if (window.innerWidth < 768) {
+                if (!navList.classList.contains("nav-list-hidden")) {
+                    navList.classList.add("nav-list-hidden");
+                }
+            }
+        });
+
         listItem.appendChild(link);
         navList.appendChild(listItem);
     });
-
-    document.querySelectorAll("nav a").forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute("data-target");
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - document.querySelector('header').offsetHeight,
-                    behavior: 'smooth'
-                });
-                navList.style.display = 'none';
-            }
-        });
-    });
 });
-
-    
